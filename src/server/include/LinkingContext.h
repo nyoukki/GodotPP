@@ -10,12 +10,13 @@ typedef std::function<entt::entity(entt::registry&)> CreationLambda;
 
 class LinkingContext {
 
-private:
+public:
     struct ObjectContext {
         uint32_t NetworkId;
         entt::entity local_entity;
     };
 
+private:
     std::unordered_map<uint32_t, ObjectContext> network_to_local_map;
     std::unordered_map<uint32_t, CreationLambda> type_map;
 
