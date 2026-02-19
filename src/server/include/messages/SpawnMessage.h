@@ -16,14 +16,16 @@ struct SpawnMessage : BaseMessage {
     }
 
     uint8_t Serialize(std::vector<uint8_t>& buffer) const override {
-        memcpy(buffer.data(), &NetworkId, sizeof(NetworkId));
+        for (int i=0; i<sizeof(uint32_t); i++) {
+            buffer.push_back((NetworkId >> (8 * i)) & 0xFF);
+        }
 
         return sizeof(NetworkId);
     }
 
-    void Deserialize(std::vector<uint8_t> &buffer, uint8_t size) override {
-        if (buffer.size() >= sizeof(uint32_t))
-            memcpy(&NetworkId, &buffer[0], sizeof(uint32_t));
+    void Deserialize(std::vector<uint8_t>::iterator buffer, uint8_t size) override {
+        if (size >= sizeof(uint32_t))
+            memcpy(&NetworkId, &(*buffer), sizeof(uint32_t));
     }
 };
 

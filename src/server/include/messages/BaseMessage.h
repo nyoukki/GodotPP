@@ -19,7 +19,7 @@ struct BaseMessage {
 
     virtual uint8_t Serialize(std::vector<uint8_t>& buffer) const = 0;
 
-    virtual void Deserialize(std::vector<uint8_t>& buffer, uint8_t size) = 0;
+    virtual void Deserialize(std::vector<uint8_t>::iterator buffer, uint8_t size) = 0;
 };
 
 #endif //GODOTPP_BASEMESSAGE_H

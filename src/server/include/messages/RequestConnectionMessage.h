@@ -19,7 +19,7 @@ struct RequestConnectionMessage : BaseMessage {
         return 0;
     }
 
-    void Deserialize(std::vector<uint8_t>& buffer, uint8_t size) override {
+    void Deserialize(std::vector<uint8_t>::iterator buffer, uint8_t size) override {
         // No data
     }
 
