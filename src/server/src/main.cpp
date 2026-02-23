@@ -4,10 +4,12 @@
 #include <chrono>
 #include <cstring>
 #include "snl.h"
+#include "../include/Entities/EntityFactory.h"
 
 #include "../include/messages/BaseMessage.h"
 #include "../include/messages/SpawnMessage.h"
 #include "../include/messages/MessageFactory.h"
+#include "../include/LinkingContext.h"
 
 int main() {
     std::cout << "[C++] Starting UDP Socket..." << std::endl;
@@ -21,8 +23,14 @@ int main() {
 
     std::cout << "[C++] Socket bound to 127.0.0.1:62362" << std::endl;
 
+    // Create our LinkingContext
+    LinkingContext Context;
+    // Register all types for our Linking Context
+    EntityFactory::RegisterAll(Context);
+
     SpawnMessage TestMsg;
     TestMsg.NetworkId = 123;
+    TestMsg.TypeId = 456;
     std::vector<uint8_t> send_buffer;
     send_buffer.resize(64);
     MessageFactory::SerializeMessage(TestMsg, send_buffer);
@@ -45,7 +53,7 @@ int main() {
             std::unique_ptr<BaseMessage> Msg = MessageFactory::DeserializeMessage(data_buffer);
             if (Msg->GetType() == MessageType::Spawn) {
                 auto SpawnMsg = static_cast<SpawnMessage*>(Msg.get());
-                std::cout << "Spawned entity with id " << SpawnMsg->NetworkId << std::flush;
+                std::cout << "Spawned entity with id " << SpawnMsg->NetworkId  << " and type " << SpawnMsg->TypeId << std::flush;
             }
         } else {
             std::cout << "." << std::flush;
