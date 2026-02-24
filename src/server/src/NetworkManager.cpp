@@ -12,7 +12,7 @@
 #include "../include/messages/SpawnMessage.h"
 
 void NetworkManager::HandleNewConnection(const std::string &IP) {
-    if (IsClientConnected(IP)) {
+    if (!IsClientConnected(IP)) {
         // Handle connection
         ClientConnections.emplace_back(IP);
 
@@ -47,9 +47,13 @@ void NetworkManager::BroadcastMessage(BaseMessage &Message) const {
     }
 }
 
-void NetworkManager::HandleMessage(const BaseMessage &Message, const std::string &IP) {
-    if (Message.GetType() == MessageType::RequestConnection) {
+void NetworkManager::HandleMessage(std::unique_ptr<BaseMessage> Message, const std::string &IP) {
+    if (Message->GetType() == MessageType::RequestConnection) {
         HandleNewConnection(IP);
+    }
+    else if (Message->GetType() == MessageType::Spawn) {
+        SpawnMessage* SpawnMsg = static_cast<SpawnMessage*>(Message.get());
+        std::cout << "[Server] Received my own Spawn message with entity ID " << SpawnMsg->NetworkId << std::endl;
     }
 }
 

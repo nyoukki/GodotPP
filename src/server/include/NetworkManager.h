@@ -30,7 +30,7 @@ public:
     void SendMessage(BaseMessage& Message, const std::string &IP) const;
     void BroadcastMessage(BaseMessage& Message) const;
 
-    void HandleMessage(const BaseMessage& Message, const std::string &IP);
+    void HandleMessage(std::unique_ptr<BaseMessage> Message, const std::string &IP);
     bool IsClientConnected(const std::string &IP);
 };
 

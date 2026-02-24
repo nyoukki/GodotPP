@@ -7,6 +7,6 @@
 #include "../../include/LinkingContext.h"
 #include "../../include/Entities/PlayerFactory.h"
 
-void EntityFactory::RegisterAll(LinkingContext Context) {
+void EntityFactory::RegisterAll(LinkingContext &Context) {
     Context.RegisterType(PlayerFactory::TypeId, &PlayerFactory::Create);
 }

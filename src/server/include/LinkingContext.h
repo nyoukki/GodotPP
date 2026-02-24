@@ -24,7 +24,7 @@ private:
     std::unordered_map<uint32_t, ObjectContext> network_to_local_map;
     std::unordered_map<EntityType, CreationLambda> type_map;
 
-    uint32_t IdCounter = 100;
+    uint32_t IdCounter = 99;
 
 public:
     // Objects

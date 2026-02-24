@@ -10,7 +10,7 @@
 class EntityFactory {
 
 public:
-    static void RegisterAll(LinkingContext Context);
+    static void RegisterAll(LinkingContext &Context);
 };
 
 
