@@ -9,7 +9,7 @@
 
 #include "LinkingContext.h"
 #include "snl.h"
-#include "messages/BaseMessage.h"
+#include "../../shared/messages/BaseMessage.h"
 
 
 class NetworkManager {

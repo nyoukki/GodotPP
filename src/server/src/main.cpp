@@ -6,12 +6,11 @@
 #include "snl.h"
 #include "../include/Entities/EntityFactory.h"
 
-#include "../include/messages/BaseMessage.h"
-#include "../include/messages/SpawnMessage.h"
-#include "../include/messages/MessageFactory.h"
+#include "../../shared/messages/BaseMessage.h"
+#include "../../shared/messages/MessageFactory.h"
 #include "../include/LinkingContext.h"
 #include "../include/NetworkManager.h"
-#include "../include/messages/RequestConnectionMessage.h"
+#include "../../shared/messages/RequestConnectionMessage.h"
 
 int main() {
     std::cout << "[C++] Starting UDP Socket..." << std::endl;

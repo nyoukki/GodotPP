@@ -2,11 +2,11 @@ add_executable(GodotPPServer
     src/main.cpp
         src/LinkingContext.cpp
         include/LinkingContext.h
-        include/messages/BaseMessage.h
-        src/messages/MessageFactory.cpp
-        include/messages/MessageFactory.h
-        include/messages/RequestConnectionMessage.h
-        include/messages/SpawnMessage.h
+        ../shared/messages/BaseMessage.h
+        ../shared/messages/MessageFactory.cpp
+        ../shared/messages/MessageFactory.h
+        ../shared/messages/RequestConnectionMessage.h
+        ../shared/messages/SpawnMessage.h
         src/Components/Transform2DComponent.cpp
         include/Components/Transform2DComponent.h
         src/Entities/PlayerFactory.cpp

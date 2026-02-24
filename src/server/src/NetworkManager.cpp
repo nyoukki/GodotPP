@@ -8,8 +8,8 @@
 #include <iostream>
 
 #include "../include/LinkingContext.h"
-#include "../include/messages/MessageFactory.h"
-#include "../include/messages/SpawnMessage.h"
+#include "../../shared/messages/MessageFactory.h"
+#include "../../shared/messages/SpawnMessage.h"
 
 void NetworkManager::HandleNewConnection(const std::string &IP) {
     if (!IsClientConnected(IP)) {

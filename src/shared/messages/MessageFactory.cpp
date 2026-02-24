@@ -2,10 +2,10 @@
 // MessageFactory.cpp
 //
 
-#include "../../include/messages/MessageFactory.h"
+#include "MessageFactory.h"
 
-#include "../../include/messages/RequestConnectionMessage.h"
-#include "../../include/messages/SpawnMessage.h"
+#include "RequestConnectionMessage.h"
+#include "SpawnMessage.h"
 
 std::unique_ptr<BaseMessage> MessageFactory::CreateMessage(const MessageType Type) {
     switch (Type) {
