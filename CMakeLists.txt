@@ -14,12 +14,13 @@ if(APPLE)
     set(GODOT_EXECUTABLE "${GODOT_CACHE_DIR}/Godot.app/Contents/MacOS/Godot")
     set(GODOT_OUTPUT_DIR "${GODOT_PROJECT_DIR}/bin/macos/arm64")
 elseif(WIN32)
-    set(GODOT_EXECUTABLE "${GODOT_CACHE_DIR}/Godot_v${GODOT_VERSION}_windows_win64.exe")
+    set(GODOT_EXECUTABLE "${GODOT_CACHE_DIR}/Godot_v${GODOT_VERSION}_win64.exe")
     set(GODOT_OUTPUT_DIR "${GODOT_PROJECT_DIR}/bin/windows")
 else()
     set(GODOT_EXECUTABLE "${GODOT_CACHE_DIR}/Godot_v${GODOT_VERSION}_linux.x86_64")
     set(GODOT_OUTPUT_DIR "${GODOT_PROJECT_DIR}/bin/linux")
 endif()
+
 
 add_subdirectory(externals)
 add_subdirectory(src)
@@ -35,7 +36,8 @@ add_custom_target(setup
 
 # Target: editor (Launches Godot Editor)
 add_custom_target(editor
-        COMMAND ${GODOT_EXECUTABLE} -e --path "${GODOT_PROJECT_DIR}"
+        COMMAND "${GODOT_EXECUTABLE}" -e --path "${GODOT_PROJECT_DIR}"
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         DEPENDS setup GodotPP
         COMMENT "Launching Godot Editor..."
         USES_TERMINAL
@@ -43,7 +45,8 @@ add_custom_target(editor
 
 # Target: play (Launches the Game)
 add_custom_target(play
-        COMMAND ${GODOT_EXECUTABLE} --path "${GODOT_PROJECT_DIR}"
+        COMMAND "${GODOT_EXECUTABLE}" --path "${GODOT_PROJECT_DIR}"
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         DEPENDS setup GodotPP
         COMMENT "Launching Game..."
         USES_TERMINAL
@@ -68,7 +71,7 @@ add_custom_target(package
         COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/build"
 
         # 2. Run the export with platform-aware variables
-        COMMAND ${GODOT_EXECUTABLE} --headless --path "${GODOT_PROJECT_DIR}"
+        COMMAND "${GODOT_EXECUTABLE}" --headless --path "${GODOT_PROJECT_DIR}"
         --export-release "${GODOT_EXPORT_PRESET}" "${GODOT_EXPORT_OUTPUT}"
 
         DEPENDS setup GodotPP
