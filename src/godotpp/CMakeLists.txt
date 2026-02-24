@@ -2,6 +2,13 @@
 add_library(GodotPP SHARED
         src/gd_example.cpp
         src/register_types.cpp
+        src/NetworkManager.cpp
+        include/NetworkManager.h
+        ../shared/messages/BaseMessage.h
+        ../shared/messages/MessageFactory.cpp
+        ../shared/messages/MessageFactory.h
+        ../shared/messages/RequestConnectionMessage.h
+        ../shared/messages/SpawnMessage.h
 )
 target_link_libraries(GodotPP PRIVATE
         godot::cpp

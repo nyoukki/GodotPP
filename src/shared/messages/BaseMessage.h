@@ -8,9 +8,10 @@
 #include <vector>
 
 enum class MessageType : uint8_t {
-    RequestConnection = 0,
-    //AcceptConnection = 1,
-    Spawn = 2,
+    Error = 0,
+    RequestConnection = 1,
+    //AcceptConnection = 2,
+    Spawn = 3,
 };
 
 struct BaseMessage {

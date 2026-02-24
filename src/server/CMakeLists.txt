@@ -7,6 +7,7 @@ add_executable(GodotPPServer
         ../shared/messages/MessageFactory.h
         ../shared/messages/RequestConnectionMessage.h
         ../shared/messages/SpawnMessage.h
+        ../shared/messages/ErrorMessage.h
         src/Components/Transform2DComponent.cpp
         include/Components/Transform2DComponent.h
         src/Entities/PlayerFactory.cpp

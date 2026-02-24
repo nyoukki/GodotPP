@@ -6,6 +6,7 @@
 
 #include "RequestConnectionMessage.h"
 #include "SpawnMessage.h"
+#include "ErrorMessage.h"
 
 std::unique_ptr<BaseMessage> MessageFactory::CreateMessage(const MessageType Type) {
     switch (Type) {
@@ -13,6 +14,8 @@ std::unique_ptr<BaseMessage> MessageFactory::CreateMessage(const MessageType Typ
             return std::make_unique<RequestConnectionMessage>();
         case MessageType::Spawn:
             return std::make_unique<SpawnMessage>();
+        default:
+            return std::make_unique<ErrorMessage>();
     }
 }
 

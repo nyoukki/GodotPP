@@ -34,15 +34,6 @@ int main() {
     // Create the Network Manager
     NetworkManager NetManager(sock, EntityRegistry, Context);
 
-    // Sending a test message to ourselves
-    RequestConnectionMessage TestMsg;
-    std::vector<uint8_t> send_buffer;
-    send_buffer.resize(64);
-    MessageFactory::SerializeMessage(TestMsg, send_buffer);
-
-    const char* target = "127.0.0.1:62362";
-    net_socket_send(sock, target, send_buffer.data(), send_buffer.size());
-
     // The Game Loop
     char sender_buf[64];
 
