@@ -7,11 +7,13 @@
 #include <cstdint>
 #include <entt/entity/registry.hpp>
 
+#include "../LinkingContext.h"
+
 
 class PlayerFactory {
 
 public:
-    const static uint32_t TypeId = 1;
+    const static EntityType TypeId = EntityType::Player;
     static entt::entity Create(entt::registry& reg);
 };
 

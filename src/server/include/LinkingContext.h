@@ -8,6 +8,10 @@
 
 typedef std::function<entt::entity(entt::registry&)> CreationLambda;
 
+enum class EntityType : uint32_t {
+    Player = 1,
+};
+
 class LinkingContext {
 
 public:
@@ -18,7 +22,7 @@ public:
 
 private:
     std::unordered_map<uint32_t, ObjectContext> network_to_local_map;
-    std::unordered_map<uint32_t, CreationLambda> type_map;
+    std::unordered_map<EntityType, CreationLambda> type_map;
 
     uint32_t IdCounter = 100;
 
@@ -27,8 +31,8 @@ public:
     ObjectContext GetFromNetwork(uint32_t NetworkId);
 
     // Type
-    void RegisterType(uint32_t TypeId, const CreationLambda &CreatorFunc);
-    ObjectContext CreateFromTypeId(uint32_t TypeId, entt::registry& reg);
+    void RegisterType(EntityType TypeId, const CreationLambda &CreatorFunc);
+    ObjectContext CreateFromTypeId(EntityType TypeId, entt::registry& reg);
 };
 
 

@@ -13,6 +13,8 @@ add_executable(GodotPPServer
         include/Entities/PlayerFactory.h
         src/Entities/EntityFactory.cpp
         include/Entities/EntityFactory.h
+        src/NetworkManager.cpp
+        include/NetworkManager.h
 )
 
 target_link_libraries(GodotPPServer PRIVATE

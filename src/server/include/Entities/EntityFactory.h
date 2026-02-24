@@ -5,9 +5,7 @@
 #ifndef GODOTPP_ENTITYFACTORY_H
 #define GODOTPP_ENTITYFACTORY_H
 #include <entt/entity/registry.hpp>
-
-
-class LinkingContext;
+#include "../LinkingContext.h"
 
 class EntityFactory {
 
