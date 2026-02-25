@@ -12,6 +12,8 @@
 using namespace godot;
 
 void NetworkManager::ConnectToServer() {
+    DataBuffer.resize(1024);
+
     // This way of connecting is temporary, replace with a more robust protocol later
     RequestConnectionMessage Message;
     std::vector<uint8_t> send_buffer;
@@ -52,4 +54,14 @@ String NetworkManager::get_server_ip() const {
 
 void NetworkManager::_process(double p_delta) {
     Node::_process(p_delta);
+
+    int bytes = net_socket_poll(Socket, DataBuffer.data(), 1024, SenderBuffer, 64);
+
+    if (bytes <= 0) return;
+
+    std::unique_ptr<BaseMessage> Msg = MessageFactory::DeserializeMessage(DataBuffer);
+
+    if (Msg->GetType() == MessageType::Spawn) {
+        godot::print_line("Spawn packet received");
+    }
 }

@@ -5,6 +5,7 @@
 #ifndef GODOTPP_NETWORKMANAGER_H
 #define GODOTPP_NETWORKMANAGER_H
 #include <string>
+#include <vector>
 #include <godot_cpp/classes/node.hpp>
 
 #include "snl.h"
@@ -16,6 +17,9 @@ namespace godot {
     private:
         GameSocket* Socket;
         std::string ServerIP = "127.0.0.1:62362";
+
+        std::vector<uint8_t> DataBuffer;
+        char SenderBuffer[64];
 
         void ConnectToServer();
 
