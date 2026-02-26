@@ -9,6 +9,7 @@
 typedef std::function<entt::entity(entt::registry&)> CreationLambda;
 
 enum class EntityType : uint32_t {
+    Error = 0,
     Player = 1,
 };
 
@@ -18,6 +19,7 @@ public:
     struct ObjectContext {
         uint32_t NetworkId;
         entt::entity local_entity;
+        EntityType Type;
     };
 
 private:
@@ -29,6 +31,7 @@ private:
 public:
     // Objects
     ObjectContext GetFromNetwork(uint32_t NetworkId);
+    std::vector<ObjectContext> GetAllObjects();
 
     // Type
     void RegisterType(EntityType TypeId, const CreationLambda &CreatorFunc);

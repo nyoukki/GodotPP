@@ -16,11 +16,19 @@ void NetworkManager::HandleNewConnection(const std::string &IP) {
         // Handle connection
         ClientConnections.emplace_back(IP);
 
-        // Create entity
+        SpawnMessage Msg;
+
+        // Send spawn packet for every existing entity to our newly connected client
+        for (LinkingContext::ObjectContext Object: Context.GetAllObjects()) {
+            Msg.NetworkId = Object.NetworkId;
+            Msg.TypeId = static_cast<uint32_t>(Object.Type);
+            SendMessage(Msg, IP);
+        }
+
+        // Create new entity
         LinkingContext::ObjectContext NewEntity = Context.CreateFromTypeId(EntityType::Player, Registry);
 
-        // Send Spawn packet
-        SpawnMessage Msg;
+        // Send Spawn for our new entity to every connected client
         Msg.NetworkId = NewEntity.NetworkId;
         Msg.TypeId = static_cast<uint32_t>(EntityType::Player);
 

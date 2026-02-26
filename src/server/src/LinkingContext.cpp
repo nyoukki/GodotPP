@@ -11,7 +11,16 @@ LinkingContext::ObjectContext LinkingContext::GetFromNetwork(const uint32_t Netw
         return network_to_local_map[NetworkId];
     }
     std::cerr << "Failed to find entity with ID" << NetworkId << std::endl;
-    return {0, entt::null};
+    return {0, entt::null, EntityType::Error};
+}
+
+std::vector<LinkingContext::ObjectContext> LinkingContext::GetAllObjects() {
+    std::vector<ObjectContext> Objects;
+    Objects.reserve(network_to_local_map.size());
+for (auto &It: network_to_local_map) {
+        Objects.emplace_back(It.second);
+    }
+    return Objects;
 }
 
 void LinkingContext::RegisterType(const EntityType TypeId, const CreationLambda &CreatorFunc) {
@@ -26,7 +35,7 @@ LinkingContext::ObjectContext LinkingContext::CreateFromTypeId(const EntityType 
     }
 
     const entt::entity new_entity = type_map[TypeId](reg);
-    const ObjectContext new_object = {++IdCounter, new_entity};
+    const ObjectContext new_object = {++IdCounter, new_entity, TypeId};
     network_to_local_map[IdCounter] = new_object;
     return new_object;
 }
