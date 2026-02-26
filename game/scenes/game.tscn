@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://dp0vhmk4t8jgu"]
 
-[ext_resource type="Texture2D" uid="uid://bv4f1f6tci7p3" path="res://icon.svg" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://crv3c6bl6i4d2" path="res://scenes/Player.tscn" id="1_uwrxv"]
 
 [node name="Game" type="Node" unique_id=1441151470]
-
-[node name="GDExample" type="GDExample" parent="." unique_id=1285902514]
-position = Vector2(4.3653717, 19.43926)
-texture = ExtResource("1_uwrxv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=852441175]
 
 [node name="NetworkManager" type="NetworkManager" parent="." unique_id=811394910]
+type_map = {
+1: ExtResource("1_uwrxv")
+}

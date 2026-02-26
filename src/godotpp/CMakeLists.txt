@@ -9,6 +9,8 @@ add_library(GodotPP SHARED
         ../shared/messages/MessageFactory.h
         ../shared/messages/RequestConnectionMessage.h
         ../shared/messages/SpawnMessage.h
+        src/LinkingContext.cpp
+        include/LinkingContext.h
 )
 target_link_libraries(GodotPP PRIVATE
         godot::cpp
